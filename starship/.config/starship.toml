@@ -1,0 +1,38 @@
+# Starship prompt — https://starship.rs/config/
+# Phase 1: clean + informative. Full theme unification comes in a later phase.
+
+add_newline = false
+command_timeout = 1000
+
+format = "$directory$git_branch$git_status$python$conda$cmd_duration$character "
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+
+[git_status]
+style = "bold yellow"
+
+[cmd_duration]
+min_time = 2000          # only show if a command took >2s
+format = "took [$duration]($style) "
+style = "bold yellow"
+
+[python]
+symbol = " "
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+style = "yellow"
+
+[conda]
+symbol = " "
+format = '[$symbol$environment]($style) '
+style = "green"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"

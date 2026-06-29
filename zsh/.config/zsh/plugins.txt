@@ -1,0 +1,5 @@
+# antidote plugins — loaded by .zshrc
+# order matters: autosuggestions, then fzf-tab, syntax-highlighting LAST
+zsh-users/zsh-autosuggestions
+Aloxaf/fzf-tab
+zsh-users/zsh-syntax-highlighting

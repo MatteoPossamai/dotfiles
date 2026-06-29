@@ -1,0 +1,16 @@
+# Atuin — shell history. https://docs.atuin.sh/configuration/config/
+# No sync account configured; history stays local (SQLite).
+
+## Press Enter on a result -> put it on the command line (don't auto-run).
+## Safer: you review before executing.
+enter_accept = false
+
+## Compact UI, opens inline under the prompt.
+style = "compact"
+inline_height = 20
+
+## Ctrl-R searches; default fuzzy-ish matching.
+search_mode = "fuzzy"
+
+## Up-arrow keeps normal shell behaviour (recent first), not atuin's filter.
+filter_mode_shell_up_key_binding = "global"

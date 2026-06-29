@@ -1,0 +1,11 @@
+# never commit machine-local config or secrets
+.zsh_secrets
+.zsh_local
+
+# editor / OS noise
+*.bak
+*.swp
+.DS_Store
+
+# antidote generated cache
+plugins.zsh
