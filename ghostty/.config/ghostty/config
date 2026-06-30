@@ -1,0 +1,24 @@
+# ghostty — managed in ~/dotfiles (stow).  Docs: https://ghostty.org/docs/config
+# Reload live: Ctrl+Shift+,
+
+# --- shell (login shell here is bash; force zsh) ---
+command = /usr/bin/zsh
+
+# --- appearance ---
+theme = Catppuccin Mocha
+font-family = JetBrainsMono Nerd Font
+font-size = 12
+window-padding-x = 8
+window-padding-y = 6
+window-padding-balance = true
+
+# --- cursor ---
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+# --- behaviour ---
+copy-on-select = true
+scrollback-limit = 10000
+confirm-close-surface = false
+window-save-state = always
