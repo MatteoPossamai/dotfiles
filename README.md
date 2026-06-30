@@ -110,3 +110,26 @@ side-by-side and colorful.
 - Run **`lg`** in a repo → a full terminal UI: stage with `space`, commit
   with `c`, push with `P`, see branches/log/diffs. `q` to quit, `?` for help.
   Optional — ignore it if you prefer the git CLI.
+
+---
+
+# tmux cheatsheet
+
+Prefix is **`Ctrl-b`** (press it, release, then the key below).
+
+## panes & windows
+- `prefix "` split down · `prefix %` split right  (also `|` / `-`) — keep current folder
+- `prefix h/j/k/l` move between panes (vim) · `prefix H/J/K/L` resize
+- `prefix c` new window · `prefix n`/`p` next/prev window · `prefix 1..9` jump
+- `prefix z` zoom pane fullscreen (toggle) · `prefix x` close pane
+- Mouse: click panes, scroll, drag borders to resize
+
+## scrollback (keyboard)
+- `prefix [` enter scroll mode, then: `k`/`j` line, `Ctrl-u`/`Ctrl-d` half-page,
+  `g`/`G` top/bottom, `/` search, `q` quit
+- Copy: `v` start selection, `y` yank → system clipboard (works over SSH via OSC52)
+
+## misc
+- `prefix r` reload config · `prefix d` detach · `prefix ?` list all keys
+
+Config is plugin-free, so it works the same on bare SSH servers.
