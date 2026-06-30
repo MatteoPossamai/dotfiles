@@ -102,8 +102,8 @@ Aliased, so just use your normal commands:
 
 ## delta — readable git diffs
 
-Will be wired into git in a later phase. Makes `git diff` / `git show`
-side-by-side and colorful.
+Wired into git (it's the pager). `git diff` / `git show` / `git log -p` are now
+colorful with line numbers. In a diff: `n` / `N` jump between changed sections.
 
 ## lazygit — git, visually  (`lg`)
 
