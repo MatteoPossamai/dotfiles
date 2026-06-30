@@ -48,6 +48,10 @@ fi
 command -v bat   >/dev/null && alias cat='bat --paging=never'
 command -v lazygit >/dev/null && alias lg='lazygit'
 
+# SSH from inside tmux: advertise a TERM every server knows, so remote
+# less/man/etc don't complain "terminal is not fully functional".
+alias ssh='TERM=xterm-256color ssh'
+
 # ---------------------------------------------------------------------------
 # History (atuin owns search; keep a sane file-based history too)
 # ---------------------------------------------------------------------------
