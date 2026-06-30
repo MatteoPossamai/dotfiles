@@ -5,7 +5,7 @@ set -euo pipefail
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-PACKAGES="zsh starship atuin tmux ghostty nvim vscode git"
+PACKAGES="zsh starship atuin tmux ghostty nvim vscode"
 
 # 1. Homebrew must exist (https://brew.sh)
 if ! command -v brew >/dev/null 2>&1; then
@@ -47,4 +47,7 @@ Done. Next:
   3. Create ~/.zsh_local    for machine-specific env       (gitignored)
   4. vscode theme:  code --install-extension catppuccin.catppuccin-vsc
   5. If conda present:  conda config --set changeps1 false
+  6. Set your git identity (NOT tracked here, set per machine):
+       git config --global user.name  "Your Name"
+       git config --global user.email "you@example.com"
 EOF

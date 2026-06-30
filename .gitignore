@@ -9,3 +9,7 @@
 
 # antidote generated cache
 plugins.zsh
+
+# never track personal/employer git identity
+.gitconfig
+git/
