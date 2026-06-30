@@ -148,3 +148,18 @@ pins exact plugin versions (commit it so machines match).
 - Custom: autoformat off, python LSP = pyright + postgres_lsp (SQL), `gd` = go to
   definition, bufferline grouped by directory.
 - First launch on a new machine: open `nvim`, plugins auto-install at locked versions.
+
+---
+
+# vscode
+
+User `settings.json` + `keybindings.json` are tracked (stowed into
+`~/.config/Code/User/`). Theme + font match the rest of the setup.
+
+- Theme: **Catppuccin Mocha** (needs the `catppuccin.catppuccin-vsc` extension —
+  `code --install-extension catppuccin.catppuccin-vsc`).
+- Font: JetBrainsMono Nerd Font (editor + terminal), ligatures on.
+- Vim keybindings via the `vscodevim` extension, leader = Space — mirror the core
+  nvim motions (`S-h`/`S-l` buffers, `leader h/j/k/l` panes, etc).
+- Note: a couple of settings hold **work-machine paths** (ansible/python
+  interpreters). Harmless elsewhere; adjust per machine if needed.

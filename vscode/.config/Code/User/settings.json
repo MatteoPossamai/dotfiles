@@ -1,0 +1,169 @@
+{
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.fontFamily": "JetBrainsMono Nerd Font, 'Droid Sans Mono', monospace",
+  "editor.fontLigatures": true,
+  "editor.linkedEditing": true,
+  "window.zoomLevel": 1,
+  "launch": {},
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "update.showReleaseNotes": false,
+  "zenMode.hideLineNumbers": false,
+  "editor.lineNumbers": "relative",
+  "terminal.integrated.defaultProfile.linux": "tmux",
+
+  "terminal.integrated.profiles.linux": {
+    "tmux": {
+      "id": "tmux",
+      "title": "tmux",
+      "extensionIdentifier": "tmux",
+      "command": "/bin/bash",
+      "args": ["-c", "tmux new-session -s vscode-$$"],
+    },
+  },
+
+  "vim.leader": "<Space>",
+  "vim.hlsearch": true,
+  "vim.handleKeys": { "<C-f>": false },
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["<S-h>"], "commands": [":bprevious"] },
+    { "before": ["<S-l>"], "commands": [":bnext"] },
+    {
+      "before": ["leader", "e"],
+      "commands": ["workbench.view.explorer"],
+    },
+    {
+      "key": "a",
+      "command": "explorer.newFile",
+      "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus",
+    },
+
+    // panes
+    {
+      "before": ["leader", "h"],
+      "commands": ["workbench.action.focusLeftGroup"],
+    },
+    {
+      "before": ["leader", "j"],
+      "commands": ["workbench.action.focusBelowGroup"],
+    },
+    {
+      "before": ["leader", "k"],
+      "commands": ["workbench.action.focusAboveGroup"],
+    },
+    {
+      "before": ["leader", "l"],
+      "commands": ["workbench.action.focusRightGroup"],
+    },
+    // NICE TO HAVE
+    { "before": ["leader", "w"], "commands": [":w!"] },
+    { "before": ["leader", "q"], "commands": [":q!"] },
+    { "before": ["leader", "x"], "commands": [":x!"] },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"],
+    },
+    {
+      "before": ["leader", "leader"],
+      "commands": ["workbench.action.quickOpen"],
+    },
+    { "before": ["leader", "f"], "commands": ["workbench.action.quickOpen"] },
+    {
+      "before": ["leader", "c", "f"],
+      "commands": ["editor.action.formatDocument"],
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["editor.action.showDefinitionPreviewHover"],
+    },
+    {
+      "before": ["<C-b>", "\""],
+      "commands": ["workbench.action.splitEditorDown"],
+    },
+    {
+      "before": ["<C-b>", "%"],
+      "commands": ["workbench.action.splitEditorRight"],
+    },
+    {
+      "before": ["leader", "b", "d"],
+      "commands": ["workbench.action.closeActiveEditor"],
+    },
+    { "before": ["K"], "commands": ["editor.action.showHover"] },
+  ],
+  "vim.visualModeKeyBindings": [
+    // Stay in visual mode while indenting
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] },
+  ],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[ansible]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "ansible.ansible.path": "/home/mpossamai/miniconda3/envs/devops_d/bin/ansible",
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.enablePersistentSessions": false,
+  "editor.renderWhitespace": "none",
+  "explorer.confirmDragAndDrop": false,
+  "python.createEnvironment.trigger": "off",
+  "python.terminal.activateEnvironment": false,
+  "explorer.confirmDelete": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "git.openRepositoryInParentFolders": "always",
+  "redhat.telemetry.enabled": true,
+  "docker.extension.dockerEngineAvailabilityPrompt": false,
+  "git.suggestSmartCommit": false,
+  "docker.extension.enableComposeLanguageServer": false,
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "explorer.confirmPasteNative": false,
+  "editor.minimap.enabled": false,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true,
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+  "notebook.lineNumbers": "on",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+  },
+  "claudeCode.preferredLocation": "panel",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "claudeCode.useTerminal": true,
+  "claudeCode.selectedModel": "opus",
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "chat.disableAIFeatures": true,
+  "claudeCode.allowDangerouslySkipPermissions": true,
+  "claudeCode.environmentVariables": [],
+  "ansible.lightspeed.enabled": false,
+  "ansible.lightspeed.suggestions.enabled": false,
+  "ansible.python.interpreterPath": "/home/mpossamai/miniconda3/envs/ansible-qic-stack/bin/python",
+  "security.promptForLocalFileProtocolHandling": false,
+  "python.analysis.typeCheckingMode": "strict"
+}
