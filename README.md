@@ -133,3 +133,18 @@ Prefix is **`Ctrl-b`** (press it, release, then the key below).
 - `prefix r` reload config · `prefix d` detach · `prefix ?` list all keys
 
 Config is plugin-free, so it works the same on bare SSH servers.
+
+---
+
+# nvim
+
+[LazyVim](https://lazyvim.org) distribution. Config lives here; `lazy-lock.json`
+pins exact plugin versions (commit it so machines match).
+
+- Leader = **Space** (same as the vscode vim setup).
+- Theme: Catppuccin Mocha (matches terminal + tmux).
+- Enabled language extras: python, docker, json, markdown, dotfiles + fzf finder
+  + Claude Code. Manage these with `:LazyExtras`.
+- Custom: autoformat off, python LSP = pyright + postgres_lsp (SQL), `gd` = go to
+  definition, bufferline grouped by directory.
+- First launch on a new machine: open `nvim`, plugins auto-install at locked versions.
