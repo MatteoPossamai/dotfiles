@@ -5,7 +5,7 @@ set -euo pipefail
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-PACKAGES="zsh starship atuin tmux ghostty nvim vscode"
+PACKAGES="zsh starship atuin tmux ghostty nvim vscode claude"
 
 # 1. Homebrew must exist (https://brew.sh)
 if ! command -v brew >/dev/null 2>&1; then
