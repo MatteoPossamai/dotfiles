@@ -38,5 +38,9 @@
   "theme": "dark",
   "skipAutoPermissionPrompt": true,
   "skillsMode": "auto",
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); model=$(echo \"$input\" | jq -r '.model.display_name'); short_dir=$(echo \"$dir\" | awk -F/ '{ if (NF>3) print $(NF-2)\"/\"$(NF-1)\"/\"$NF; else print $0 }'); cd \"$dir\" 2>/dev/null; branch=$(git --no-optional-locks branch --show-current 2>/dev/null); dirty=''; if [ -n \"$branch\" ] && [ -n \"$(git --no-optional-locks status --porcelain 2>/dev/null)\" ]; then dirty=1; fi; out=$(printf '\\033[1;36m%s\\033[0m' \"$short_dir\"); if [ -n \"$branch\" ]; then out=\"$out \"$(printf '\\033[1;38;2;203;166;247m %s\\033[0m' \"$branch\"); fi; if [ -n \"$dirty\" ]; then out=\"$out \"$(printf '\\033[1;38;2;249;226;175m*\\033[0m'); fi; out=\"$out \"$(printf '\\033[38;2;137;180;250m%s\\033[0m' \"$model\"); printf '%s' \"$out\""
+  }
 }
