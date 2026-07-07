@@ -4,6 +4,7 @@
   "editor.fontLigatures": true,
   "editor.linkedEditing": true,
   "window.zoomLevel": 1,
+  "window.restoreWindows": "one",
   "launch": {},
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
