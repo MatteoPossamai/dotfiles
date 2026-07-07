@@ -4,7 +4,7 @@
   "editor.fontLigatures": true,
   "editor.linkedEditing": true,
   "window.zoomLevel": 1,
-  "window.restoreWindows": "one",
+  "window.restoreWindows": "none",
   "launch": {},
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -13,19 +13,9 @@
   "update.showReleaseNotes": false,
   "zenMode.hideLineNumbers": false,
   "editor.lineNumbers": "relative",
-  "terminal.integrated.defaultProfile.linux": "tmux",
-
+  "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.profiles.linux": {
-    "tmux": {
-      "id": "tmux",
-      "title": "tmux",
-      "extensionIdentifier": "tmux",
-      "command": "/bin/bash",
-      "args": [
-        "-c",
-        "exec tmux -L vscode new-session -s \"code-$$\" \\; set-option destroy-unattached on"
-      ],
-    },
+    "zsh": { "path": "/usr/bin/zsh" }
   },
 
   "vim.leader": "<Space>",
