@@ -20,7 +20,10 @@
       "title": "tmux",
       "extensionIdentifier": "tmux",
       "command": "/bin/bash",
-      "args": ["-c", "tmux new-session -s vscode-$$"],
+      "args": [
+        "-c",
+        "exec tmux -L vscode new-session -s \"code-$$\" \\; set-option destroy-unattached on"
+      ],
     },
   },
 
