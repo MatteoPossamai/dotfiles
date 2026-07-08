@@ -24,6 +24,8 @@ Secrets and machine-specific env are **not** in this repo:
 
 ## Set up on a new machine
 
+On a **clean** machine:
+
 ```bash
 git clone <repo> ~/dotfiles
 cd ~/dotfiles
@@ -31,6 +33,11 @@ cd ~/dotfiles
 # then create ~/.zsh_secrets and ~/.zsh_local
 exec zsh
 ```
+
+If the machine **already has** shell/editor configs (the usual case), stow will
+refuse to overwrite them — follow the backup-and-migrate steps in
+**[SETUP.md](SETUP.md)**. It also covers migrating your old `~/.zshrc` env into
+`~/.zsh_local`, the `neovim >= 0.11.2` requirement, and how to revert.
 
 ## Day-to-day: add / change a config
 

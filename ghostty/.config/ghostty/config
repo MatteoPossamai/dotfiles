@@ -12,6 +12,11 @@ window-padding-x = 8
 window-padding-y = 6
 window-padding-balance = true
 
+# hide the GTK title/header bar (keeps resize border; move with Super+drag)
+gtk-titlebar = false
+# slight transparency — gauge what's behind, not read it (1.0 = solid black)
+background-opacity = 0.92
+
 # --- cursor ---
 cursor-style = block
 cursor-style-blink = false
