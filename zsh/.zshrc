@@ -67,3 +67,6 @@ setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE
 [ -f "$HOME/.zsh_secrets" ] && source "$HOME/.zsh_secrets"
 
 unset LOCPATH
+
+export DPRINT_INSTALL="/home/mpossamai/.dprint"
+export PATH="$DPRINT_INSTALL/bin:$PATH"
