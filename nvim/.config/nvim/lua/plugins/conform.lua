@@ -1,41 +1,49 @@
 return {
-  "stevearc/conform.nvim",
-  opts = function(_, opts)
-    -- Extend formatter mappings
-    opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft or {}, {
-      python = { "ruff_format" },
-      yaml = { "prettier" },
-      markdown = { "prettier" },
-      javascript = { "prettier" },
-      typescript = { "prettier" },
-      sql = { "sql-formatter" },
-      toml = { "pyproject-fmt" },
-    })
+  {
+    "mason-org/mason.nvim",
+    opts = { ensure_installed = { "clang-format" } },
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = function(_, opts)
+      -- Extend formatter mappings
+      opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft or {}, {
+        python = { "ruff_format" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        sql = { "sql-formatter" },
+        toml = { "pyproject-fmt" },
+      })
 
-    opts.formatters = vim.tbl_deep_extend("force", opts.formatters or {}, {
-      black = {
-        command = "black",
-        args = {
-          "--line-length", "79",
-          "--target-version", "py313",
-          "-",
+      opts.formatters = vim.tbl_deep_extend("force", opts.formatters or {}, {
+        black = {
+          command = "black",
+          args = {
+            "--line-length", "79",
+            "--target-version", "py313",
+            "-",
+          },
+          stdin = true,
         },
-        stdin = true,
-      },
 
-      isort = {
-        command = "isort",
-        args = {
-          "--profile", "black",
-          "--stdout",
-          "--filename", "$FILENAME",
-          "-",
+        isort = {
+          command = "isort",
+          args = {
+            "--profile", "black",
+            "--stdout",
+            "--filename", "$FILENAME",
+            "-",
+          },
+          stdin = true,
         },
-        stdin = true,
-      },
-    })
+      })
 
-    -- Disable autoformat on save
-    opts.format_on_save = nil
-  end,
+      -- Disable autoformat on save
+      opts.format_on_save = nil
+    end,
+  },
 }
