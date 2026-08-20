@@ -9,7 +9,12 @@ return {
         postgres_lsp = {
           cmd = { "postgres_lsp" },
           filetypes = { "sql", "postgres" },
-        }
+        },
+        clangd = {
+          init_options = {
+            fallbackFlags = { "-std=c++20", "-Wall", "-Wextra", "-Wshadow" },
+          },
+        },
       },
     },
   },
