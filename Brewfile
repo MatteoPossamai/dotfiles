@@ -14,3 +14,4 @@ brew "ripgrep"     # fast grep (rg) — already present, pinned for portability
 brew "git-delta"   # pretty git diffs
 brew "lazygit"     # terminal git UI
 brew "neovim"      # editor (nvim package is LazyVim; needs nvim >= 0.11.2)
+brew "jq"

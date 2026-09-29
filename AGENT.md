@@ -41,6 +41,7 @@ ghostty/  .config/ghostty/config                   (terminal)
 nvim/     .config/nvim/...                         (LazyVim; lazy-lock.json pins versions)
 vscode/   .config/Code/User/{settings,keybindings}.json
 Brewfile  bootstrap.sh  README.md (user cheatsheet)  AGENT.md (this)
+repos.json  clone-repos.sh                         (clone listed repos into ~/repos)
 ```
 
 ## How to change a config

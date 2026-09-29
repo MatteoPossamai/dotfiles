@@ -10,6 +10,8 @@ files live here, stow symlinks them into place.
 dotfiles/
   Brewfile          # all CLI tools (brew bundle installs them)
   bootstrap.sh      # fresh-machine setup: installs tools + stows everything
+  repos.json        # list of my git repos
+  clone-repos.sh    # clones every repo in repos.json into ~/repos
   zsh/              # .zshrc, .zshenv, plugins.txt
   starship/         # prompt config
   atuin/            # history config
@@ -30,6 +32,7 @@ On a **clean** machine:
 git clone <repo> ~/dotfiles
 cd ~/dotfiles
 ./bootstrap.sh
+./clone-repos.sh          # clone my repos into ~/repos
 # then create ~/.zsh_secrets and ~/.zsh_local
 exec zsh
 ```
