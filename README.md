@@ -14,7 +14,7 @@ dotfiles/
   clone-repos.sh    # clones every repo in repos.json into ~/repos
   zsh/              # .zshrc, .zshenv, plugins.txt
   starship/         # prompt config
-  atuin/            # history config
+  codex/            # global Codex instructions (~/.codex/AGENTS.md)
 ```
 
 Secrets and machine-specific env are **not** in this repo:
@@ -49,6 +49,11 @@ live file — it's the same file) and commit.
 
 To deploy a package after adding one: `stow -t ~ <name>` from `~/dotfiles`.
 
+Codex loads `~/.codex/AGENTS.md` at the start of each session. Edit
+`codex/.codex/AGENTS.md` here to change your global preferences; deploy with
+`stow --no-folding -t "$HOME" codex`. The root `AGENTS.md` links to `AGENT.md`
+for instructions specific to this repository.
+
 ---
 
 # Tool cheatsheet
@@ -64,12 +69,10 @@ a few have commands worth learning. Focus on the **bold** ones.
 - **starship** — the prompt. Shows folder, git branch + status, python/conda
   env, and how long slow commands took. Nothing to do.
 
-## atuin — better history  ⭐ learn this one
+## Shell history
 
-- **`Ctrl-R`** → opens a searchable, full-screen list of every command you've
-  run. Type to filter, ↑/↓ to pick, **Enter** to put it on your line
-  (it won't auto-run — you press Enter again).
-- `Esc` to cancel.
+- **↑ / ↓** browse recent commands.
+- **Ctrl-R** searches normal zsh history inline.
 
 ## zoxide — jump to folders  ⭐ learn this one
 
@@ -173,3 +176,22 @@ User `settings.json` + `keybindings.json` are tracked (stowed into
   nvim motions (`S-h`/`S-l` buffers, `leader h/j/k/l` panes, etc).
 - Note: a couple of settings hold **work-machine paths** (ansible/python
   interpreters). Harmless elsewhere; adjust per machine if needed.
+
+## Omarchy machines
+
+`./bootstrap.sh` detects Omarchy and uses `bootstrap-omarchy.sh` automatically.
+It reuses installed commands and installs only missing tools with Homebrew.
+In zsh, system commands take priority over duplicate Homebrew commands.
+Existing Homebrew packages are left installed.
+
+Existing config files are preserved: each Stow package with a conflict is
+skipped, and zsh conflicts stop setup before changing Ghostty. Ghostty keeps
+its Omarchy config and dynamic theme; setup backs it up as
+`~/.config/ghostty/config.before-zsh.*` and appends the installed zsh path.
+The login shell stays unchanged. Reload Ghostty with `Ctrl+Shift+,` and open
+a new window. Omarchy's bash-specific aliases remain available in `bash`;
+they are not sourced into zsh.
+
+To undo the shell switch, restore the printed Ghostty backup and reload its
+config. To unlink the zsh files, run `stow -D -t "$HOME" zsh` from this repo.
+Do not use `stow --adopt` to resolve conflicts: review existing configs first.

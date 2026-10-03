@@ -2,11 +2,11 @@
 # Install everything with:  brew bundle --file=~/dotfiles/Brewfile
 
 brew "stow"        # symlink manager — deploys these dotfiles into place
+brew "zsh"         # interactive shell
 brew "antidote"    # zsh plugin manager (replaces oh-my-zsh)
 brew "starship"    # prompt
-brew "atuin"       # shell history (Ctrl-R)
 brew "zoxide"      # smart directory jump (z)
-brew "fzf"         # fuzzy finder (powers fzf-tab, atuin uses its own UI)
+brew "fzf"         # fuzzy finder (powers fuzzy completion and file selection)
 brew "bat"         # cat with colors
 brew "eza"         # ls with colors/icons/git
 brew "fd"          # friendly find

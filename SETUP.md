@@ -54,12 +54,12 @@ already exist as **real** files/dirs must be backed up and removed first:
 |----------|------------------|
 | zsh      | `~/.zshrc` `~/.zshenv` `~/.config/zsh/` |
 | starship | `~/.config/starship.toml` |
-| atuin    | `~/.config/atuin/` |
 | tmux     | `~/.tmux.conf` |
 | ghostty  | `~/.config/ghostty/` |
 | nvim     | `~/.config/nvim/` |
 | vscode   | `~/.config/Code/User/{settings,keybindings}.json` |
 | claude   | `~/.claude/settings.json` `~/.claude/CLAUDE.md` |
+| codex    | `~/.codex/AGENTS.md` |
 
 ### 1. Install the tools
 
@@ -108,7 +108,8 @@ rm -rf ~/.config/nvim ~/.config/ghostty
 rm -f  ~/.config/Code/User/{settings,keybindings}.json
 rm -f  ~/.claude/settings.json          # claude: do this one last (see note)
 cd ~/dotfiles
-stow -v -t ~ zsh starship atuin tmux ghostty nvim vscode
+stow -v -t ~ zsh starship tmux ghostty nvim vscode
+stow --no-folding -t ~ codex
 stow -v -t ~ claude                     # last — see note
 ```
 
@@ -133,7 +134,7 @@ git config --global user.email "you@example.com"
 
 ```bash
 zsh -i -c 'echo ok'                       # loads clean (antidote clones plugins on first run)
-zsh -i -c 'alias ls; command -v starship atuin zoxide eza bat fd rg delta lazygit'
+zsh -i -c 'alias ls; command -v starship zoxide eza bat fd rg delta lazygit'
 nvim --headless "+Lazy! sync" +qa         # nvim plugins install
 tmux -L t -f ~/.tmux.conf new -d 'sleep 1' && tmux -L t kill-server   # tmux config parses
 readlink ~/.zshrc                         # should point into dotfiles/

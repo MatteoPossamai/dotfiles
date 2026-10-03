@@ -8,7 +8,13 @@ export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
 
 # Homebrew (Linux). Sets PATH/MANPATH for brew-installed tools.
 if [ -d /home/linuxbrew/.linuxbrew/bin ]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  if [[ -d /usr/share/omarchy || -d "$HOME/.local/share/omarchy" ]]; then
+    # Keep distro tools ahead of Homebrew, even if inherited PATH had brew first.
+    typeset -U path
+    path=($HOME/bin $HOME/.local/bin /usr/local/sbin /usr/local/bin /usr/bin /bin ${path:#/home/linuxbrew/.linuxbrew/*} /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin)
+  else
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -16,7 +22,11 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # ---------------------------------------------------------------------------
 # Completion (must run before fzf-tab loads)
 # ---------------------------------------------------------------------------
+mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}"
 autoload -Uz compinit && compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump"
+
+# Initialise fzf before fzf-tab so the plugin keeps ownership of Tab.
+command -v fzf >/dev/null && source <(fzf --zsh) 2>/dev/null
 
 # ---------------------------------------------------------------------------
 # Plugins (antidote) — autosuggestions, fzf-tab, syntax-highlighting
@@ -33,8 +43,6 @@ unset _antidote_src
 # ---------------------------------------------------------------------------
 command -v starship >/dev/null && eval "$(starship init zsh)"      # prompt
 command -v zoxide   >/dev/null && eval "$(zoxide init zsh)"        # z (smart cd)
-command -v fzf      >/dev/null && source <(fzf --zsh) 2>/dev/null  # fzf: Ctrl-T, Alt-C
-command -v atuin    >/dev/null && eval "$(atuin init zsh)"         # atuin LAST so it owns Ctrl-R
 
 # ---------------------------------------------------------------------------
 # Aliases — modern CLI replacements (interactive only; scripts unaffected)
@@ -53,8 +61,10 @@ command -v lazygit >/dev/null && alias lg='lazygit'
 alias ssh='TERM=xterm-256color ssh'
 
 # ---------------------------------------------------------------------------
-# History (atuin owns search; keep a sane file-based history too)
+# History (native zsh, recent commands first)
 # ---------------------------------------------------------------------------
+# Keep Ctrl-R as native inline history search rather than fzf's picker.
+bindkey '^R' history-incremental-search-backward
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
@@ -68,5 +78,5 @@ setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE
 
 unset LOCPATH
 
-export DPRINT_INSTALL="/home/mpossamai/.dprint"
+export DPRINT_INSTALL="$HOME/.dprint"
 export PATH="$DPRINT_INSTALL/bin:$PATH"

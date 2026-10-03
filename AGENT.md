@@ -1,5 +1,9 @@
 # AGENT.md — context for AI assistants working on this repo
 
+Codex reads this repo context through the `AGENTS.md` symlink.
+Global Codex preferences live in `codex/.codex/AGENTS.md`, stowed to
+`~/.codex/AGENTS.md`.
+
 This is **Matteo's dotfiles** — a portable terminal/dev environment. Read this
 before changing anything. `CLAUDE.md` is a symlink to this file.
 
@@ -11,15 +15,16 @@ Personal dotfiles for **Linux only** (work + personal machines). Managed with
 
 ## Hard rules (do not violate)
 
-- **Secrets never enter the repo.** They live in `~/.zsh_secrets` (gitignored).
-  Machine/work-specific env lives in `~/.zsh_local` (gitignored). The repo only
-  holds the `source` lines. If you find a secret in a tracked file, stop.
+- **Secrets never enter the repo.**
 - **Don't commit after every small tweak.** Iterate uncommitted; make ONE clean,
-  squashed commit per phase/change. Ask before committing if unsure.
-- **Linux only.** No macOS/Windows branches. Keep configs simple, no OS templating.
+  squashed commit per phase/change. Ask before commiting.
 - **Lean over clever.** Owner prefers minimal, readable config over feature bloat.
   When in doubt, do less. Explain plainly (owner self-describes as preferring
   slow, clear, one-step-at-a-time pacing).
+- DO NOT BE OVERLY VERBOSE. The user is dumb, and cannot process a lot of context.
+  So please, be clear, and very dry and short in your descriptions. The user
+  must understand because it is extremely simple to understand. Do NOT repeat
+  yourself, and do not go all over the place. This is the SINGLE MOST IMPORTANT rule.
 
 ## Conventions
 
@@ -35,7 +40,6 @@ Personal dotfiles for **Linux only** (work + personal machines). Managed with
 ```
 zsh/      .zshrc .zshenv .config/zsh/plugins.txt   (antidote plugins)
 starship/ .config/starship.toml                    (prompt)
-atuin/    .config/atuin/config.toml                (history)
 tmux/     .tmux.conf                               (plugin-free, server-safe)
 ghostty/  .config/ghostty/config                   (terminal)
 nvim/     .config/nvim/...                         (LazyVim; lazy-lock.json pins versions)
@@ -54,7 +58,7 @@ Test before claiming success (e.g. `zsh -i -c ...`, `tmux -L test -f <conf> ...`
 ## Stack (what's installed) — see Brewfile
 
 zsh (antidote replaces oh-my-zsh; plugins: zsh-autosuggestions, fzf-tab,
-zsh-syntax-highlighting), starship, atuin (Ctrl-R), zoxide (z), fzf, bat, eza,
+zsh-syntax-highlighting), starship, zoxide (z), fzf, bat, eza,
 fd, ripgrep, git-delta, lazygit, stow.
 
 ## Machine gotchas (IMPORTANT)
