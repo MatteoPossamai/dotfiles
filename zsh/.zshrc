@@ -80,3 +80,8 @@ unset LOCPATH
 
 export DPRINT_INSTALL="$HOME/.dprint"
 export PATH="$DPRINT_INSTALL/bin:$PATH"
+
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+
+. "$HOME/.local/share/../bin/env"

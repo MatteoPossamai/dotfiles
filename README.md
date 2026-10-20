@@ -15,6 +15,7 @@ dotfiles/
   zsh/              # .zshrc, .zshenv, plugins.txt
   starship/         # prompt config
   codex/            # global Codex instructions (~/.codex/AGENTS.md)
+  scripts/          # standalone command-line tools
 ```
 
 Secrets and machine-specific env are **not** in this repo:
@@ -60,6 +61,43 @@ for instructions specific to this repository.
 
 The point of Phase 1. A few of these you just *feel* (they work passively);
 a few have commands worth learning. Focus on the **bold** ones.
+
+## Long jobs: poppi_pop
+
+```bash
+ln -s "$HOME/repos/dotfiles/scripts/poppi_pop" "$HOME/.local/bin/poppi_pop"
+sudo -v                         # optional: permit highest normal CPU priority
+poppi_pop --cpu 3 -- ./long-job --its-options
+poppi_pop --cpu 3 --pid 12345     # watch an existing process
+poppi_pop --cpu 3 --pid 12345 --log /path/to/job.log
+```
+
+Pins the command to CPU 3 (numbering starts at 0), requests nice `-20`, and
+sends its exit code, duration and last 10 stdout lines to Telegram. Output
+stays visible in the terminal; the wrapper returns the command's exit code.
+Priority falls back with a warning if permission is denied. Commands run as
+your user. Notification failure prints a warning and preserves the job's exit
+code. Oversized output is shortened to fit Telegram's message limit.
+
+PID mode applies priority and CPU affinity to the process's existing threads,
+then waits for that process to end. Existing child processes are separate;
+attach to the PID doing the work. Elapsed time starts at attachment and the
+process's exit code is reported as unknown. It reads the last 10 lines only
+when stdout is a readable regular file, or from an explicit `--log FILE`.
+Terminal and pipe output cannot be recovered. Ctrl+C stops watching and leaves
+the existing process running; priority and affinity changes remain in place.
+PID mode returns 0 when monitoring finishes, rather than the target's exit code.
+
+Requires Bash, curl, jq and Linux util-linux/coreutils. Keep the bot token in
+`~/.config/poppi_pop/bot-token` and destination ID in
+`~/.config/poppi_pop/chat-id` (or under `$XDG_CONFIG_HOME`). Use directory mode
+`700` and file mode `600`. These files live outside the repository.
+Send `/start` to the bot once. When `chat-id` is absent, the first run discovers
+the bot's sole private chat; multiple chats require an explicit destination ID.
+PID mode also requires `pidwait` from procps-ng.
+
+Use `bash -c 'first-command | second-command'` for shell pipelines. The wrapper
+runs in the foreground; use tmux to keep a job running after closing a terminal.
 
 ## Just works — nothing to learn
 
