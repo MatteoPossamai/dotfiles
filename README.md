@@ -54,6 +54,8 @@ Codex loads `~/.codex/AGENTS.md` at the start of each session. Edit
 `codex/.codex/AGENTS.md` here to change your global preferences; deploy with
 `stow --no-folding -t "$HOME" codex`. The root `AGENTS.md` links to `AGENT.md`
 for instructions specific to this repository.
+Claude's `claude/.claude/CLAUDE.md` links to the same global instructions so
+they stay identical; deploy with `stow --no-folding -t "$HOME" claude`.
 
 ---
 

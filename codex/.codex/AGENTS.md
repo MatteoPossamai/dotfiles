@@ -1,4 +1,4 @@
-# Global Codex instructions
+# Global agent instructions
 
 ## Who you are talking to
 - The reader is a human, not a model. I may not have the full picture you do.
@@ -33,4 +33,12 @@
 
 ## Long-running jobs
 - Run them in the background and check back, rather than freezing on them.
+- Use `poppi_pop` (on PATH) for long CPU jobs to get a Telegram completion
+  notification: `poppi_pop --cpu N -- command [arguments...]`.
+- To watch an existing process: `poppi_pop --cpu N --pid PID [--log FILE]`.
+  Its exit code is unknown; use `--log` when stdout is not a readable file.
+- Choose an available CPU (numbering starts at 0). The script pins the job to
+  that CPU, requests nice -20, and reports elapsed time and the last 10 stdout
+  lines. Priority falls back with a warning if permission is denied.
+- Run the wrapper in tmux for jobs that must survive closing the terminal.
 - Report the outcome plainly when done: worked, failed (with the error), or skipped.
