@@ -64,42 +64,31 @@ they stay identical; deploy with `stow --no-folding -t "$HOME" claude`.
 The point of Phase 1. A few of these you just *feel* (they work passively);
 a few have commands worth learning. Focus on the **bold** ones.
 
-## Long jobs: poppi_pop
+## Long jobs: Fire and Forget
+
+`fire-n-forget` submits jobs to a local or remote worker and can send a Telegram
+notification on completion. See `~/repos/fire_n_forget/README.md` for setup.
 
 ```bash
-ln -s "$HOME/repos/dotfiles/scripts/poppi_pop" "$HOME/.local/bin/poppi_pop"
-sudo -v                         # optional: permit highest normal CPU priority
-poppi_pop --cpu 3 -- ./long-job --its-options
-poppi_pop --cpu 3 --pid 12345     # watch an existing process
-poppi_pop --cpu 3 --pid 12345 --log /path/to/job.log
+fire-n-forget submit --cores 1 'cd /absolute/project/path && ./long-job'
+fire-n-forget jobs
+fire-n-forget status 0
+fire-n-forget output 0
+fire-n-forget result 0
+fire-n-forget watch
 ```
 
-Pins the command to CPU 3 (numbering starts at 0), requests nice `-20`, and
-sends its exit code, duration and last 10 stdout lines to Telegram. Output
-stays visible in the terminal; the wrapper returns the command's exit code.
-Priority falls back with a warning if permission is denied. Commands run as
-your user. Notification failure prints a warning and preserves the job's exit
-code. Oversized output is shortened to fit Telegram's message limit.
+Use the job ID returned by `submit`. Commands run in the worker's working
+directory, so specify the project directory and environment explicitly. A
+completed job may have failed: exit codes are not currently recorded. Queued
+and running jobs are lost on daemon restart; unexpected worker loss is not
+detected. See the Fire and Forget README for the other limits.
 
-PID mode applies priority and CPU affinity to the process's existing threads,
-then waits for that process to end. Existing child processes are separate;
-attach to the PID doing the work. Elapsed time starts at attachment and the
-process's exit code is reported as unknown. It reads the last 10 lines only
-when stdout is a readable regular file, or from an explicit `--log FILE`.
-Terminal and pipe output cannot be recovered. Ctrl+C stops watching and leaves
-the existing process running; priority and affinity changes remain in place.
-PID mode returns 0 when monitoring finishes, rather than the target's exit code.
+To put the command on `PATH` on this machine:
 
-Requires Bash, curl, jq and Linux util-linux/coreutils. Keep the bot token in
-`~/.config/poppi_pop/bot-token` and destination ID in
-`~/.config/poppi_pop/chat-id` (or under `$XDG_CONFIG_HOME`). Use directory mode
-`700` and file mode `600`. These files live outside the repository.
-Send `/start` to the bot once. When `chat-id` is absent, the first run discovers
-the bot's sole private chat; multiple chats require an explicit destination ID.
-PID mode also requires `pidwait` from procps-ng.
-
-Use `bash -c 'first-command | second-command'` for shell pipelines. The wrapper
-runs in the foreground; use tmux to keep a job running after closing a terminal.
+```bash
+ln -s "$HOME/repos/fire_n_forget/scripts/fire-n-forget" "$HOME/.local/bin/fire-n-forget"
+```
 
 ## Just works — nothing to learn
 

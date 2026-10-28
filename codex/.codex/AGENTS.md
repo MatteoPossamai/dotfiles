@@ -39,13 +39,16 @@ Prioritize them.
 - When waiting on something, poll with exponential backoff - don't hammer or block.
 
 ## Long-running jobs
-- Run them in the background and check back, rather than freezing on them.
-- Use `poppi_pop` (on PATH) for long CPU jobs to get a Telegram completion
-  notification: `poppi_pop --cpu N -- command [arguments...]`.
-- To watch an existing process: `poppi_pop --cpu N --pid PID [--log FILE]`.
-  Its exit code is unknown; use `--log` when stdout is not a readable file.
-- Choose an available CPU (numbering starts at 0). The script pins the job to
-  that CPU, requests nice -20, and reports elapsed time and the last 10 stdout
-  lines. Priority falls back with a warning if permission is denied.
-- Run the wrapper in tmux for jobs that must survive closing the terminal.
+- For long CPU jobs, use `fire-n-forget` when its daemon and worker are available.
+- Submit: `fire-n-forget submit --cores 1 'cd /absolute/project/path && command'`.
+  Save the returned `job_id`; the command runs on a worker in a shell, not in
+  your current directory. Explicitly set the working directory and environment.
+- Check `fire-n-forget status ID`, `fire-n-forget output ID` (last 10 lines),
+  `fire-n-forget result ID`, or `fire-n-forget jobs`. Use `fire-n-forget watch`
+  interactively. Poll with exponential backoff when waiting.
+- Read `~/repos/fire_n_forget/README.md` for setup, resource options and limits.
+  If the daemon or a compatible worker is unavailable, report that and use an
+  appropriate alternative. Do not restart a daemon with jobs in progress.
+- A completed status means the process ended, not that it succeeded: exit codes
+  are not currently recorded. Verify the outcome from output or job artifacts.
 - Report the outcome plainly when done: worked, failed (with the error), or skipped.
