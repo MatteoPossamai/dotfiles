@@ -27,6 +27,35 @@ Secrets and machine-specific env are **not** in this repo:
 
 ## Set up on a new machine
 
+### Debian servers (13 or newer)
+
+```bash
+apt-get update && apt-get install -y git ca-certificates  # as root, on a fresh box
+git clone https://github.com/MatteoPossamai/dotfiles.git ~/repos/dotfiles
+cd ~/repos/dotfiles
+./bootstrap.sh --set-shell
+```
+
+Run setup as the account that will use the tools (root works; other accounts need
+sudo). `--set-shell` makes zsh the login shell; omit it to keep the current shell.
+`bootstrap.sh` selects `bootstrap-debian.sh` automatically on Debian.
+
+The Debian script installs zsh with Antidote plugins, Starship, tmux, Tailscale, the CLI tools,
+and Neovim with the committed LazyVim plugins, language tools, and parsers. It uses
+apt plus pinned, checksum-verified upstream binaries (Neovim 0.12.6, Starship 1.27.0,
+lazygit 0.66.3, Tree-sitter 0.27.2). Supports x86-64 and ARM64. Downloads and parser
+builds require internet access; builds use one CPU at a time.
+On machines below 1.5 GiB RAM without sufficient swap, setup adds 1 GiB temporary
+swap to keep SSH responsive while compiling parsers, and removes it on exit.
+
+Rerun the same command to finish an interrupted setup or redeploy configs.
+Existing conflicting configs stop setup; move them aside first (see SETUP.md).
+No desktop apps, server fonts, monitoring, or containers are installed. Tailscale
+is the only added service; sign in with `tailscale up` (sudo for non-root users).
+Your local terminal supplies the Nerd Font. No secrets are copied.
+
+### Other Linux machines
+
 On a **clean** machine:
 
 ```bash

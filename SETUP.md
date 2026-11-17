@@ -4,6 +4,12 @@ Linux only. Real config files live in this repo; [GNU stow](https://www.gnu.org/
 symlinks them into `$HOME`. Secrets and machine-specific env stay **out** of the
 repo (`~/.zsh_secrets`, `~/.zsh_local`).
 
+For **Debian 13+ servers**, follow the [Debian setup in README.md](README.md#debian-servers-13-or-newer).
+`./bootstrap.sh [--set-shell]` selects the terminal-only Debian installer, supports
+root, and does not require Homebrew. The Homebrew instructions below apply to
+other Linux machines. The locked Tree-sitter plugin currently needs Neovim 0.12+;
+the Debian installer supplies a compatible pinned binary.
+
 There are two paths below. Pick one:
 
 - **A. Clean machine** — no existing shell/editor config. Just run `bootstrap.sh`.

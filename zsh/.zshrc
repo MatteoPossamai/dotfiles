@@ -31,7 +31,10 @@ command -v fzf >/dev/null && source <(fzf --zsh) 2>/dev/null
 # ---------------------------------------------------------------------------
 # Plugins (antidote) — autosuggestions, fzf-tab, syntax-highlighting
 # ---------------------------------------------------------------------------
-_antidote_src="$(brew --prefix antidote 2>/dev/null)/share/antidote/antidote.zsh"
+_antidote_src="${HOME}/.local/share/antidote/antidote.zsh"
+if [ ! -f "$_antidote_src" ] && command -v brew >/dev/null 2>&1; then
+  _antidote_src="$(brew --prefix antidote 2>/dev/null)/share/antidote/antidote.zsh"
+fi
 if [ -f "$_antidote_src" ]; then
   source "$_antidote_src"
   antidote load "${HOME}/.config/zsh/plugins.txt"
@@ -84,4 +87,4 @@ export PATH="$DPRINT_INSTALL/bin:$PATH"
 export CC=/usr/bin/clang
 export CXX=/usr/bin/clang++
 
-. "$HOME/.local/share/../bin/env"
+[ ! -r "$HOME/.local/bin/env" ] || . "$HOME/.local/bin/env"

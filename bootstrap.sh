@@ -5,6 +5,14 @@ set -euo pipefail
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Debian servers use native packages and only the terminal configs.
+if [[ -f /etc/os-release ]]; then
+  . /etc/os-release
+  if [[ "$ID" == debian ]]; then
+    exec "$DIR/bootstrap-debian.sh" "$@"
+  fi
+fi
+
 # Omarchy already owns the desktop and many development tools.
 if [[ -d /usr/share/omarchy || -d "$HOME/.local/share/omarchy" ]]; then
   exec "$DIR/bootstrap-omarchy.sh" "$@"
